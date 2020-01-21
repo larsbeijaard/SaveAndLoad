@@ -6,11 +6,13 @@ namespace LarsPack.Utils
 {
     public class SaveFiles
     {
+        // To create a string to the full path
         private readonly string m_SavePath;
         private readonly string m_FileName;
         private readonly string m_FileExtension;
 
         private readonly string m_FullPath;
+        // -
 
         /// <summary>
         /// Save file accessor
@@ -25,6 +27,7 @@ namespace LarsPack.Utils
             m_FileName = _fileName;
             m_FileExtension = _fileExtension;
 
+            // Set the full path
             m_FullPath = m_SavePath + "/" + m_FileName + m_FileExtension;
         }
 
@@ -35,7 +38,7 @@ namespace LarsPack.Utils
         /// <param name="_struct"> Struct name </param>
         public void Save<T>(T _struct) where T : struct
         {
-            // Create a new file when there is non existing
+            // Create a new file, when the file doesn't exist
             if (!File.Exists(m_SavePath + "/" + m_FileName + m_FileExtension))
             {
                 File.Create(m_SavePath + "/" + m_FileName + m_FileExtension);
@@ -64,6 +67,7 @@ namespace LarsPack.Utils
             // Read and deserialze the json data
             string _json = File.ReadAllText(m_FullPath);
             _struct = JsonConvert.DeserializeObject<T>(_json);
+
             // Return the deserialzed data
             return _struct;
         }

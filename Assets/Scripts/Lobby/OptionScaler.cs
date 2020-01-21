@@ -50,5 +50,5 @@ namespace Game.Lobby
                 correspondingText.text = m_ScalerType.ToString() + " " + scaleValue;
             }
         }
-    } 
+    }
 }
